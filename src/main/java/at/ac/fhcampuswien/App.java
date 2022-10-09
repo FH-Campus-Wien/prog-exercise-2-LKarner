@@ -47,11 +47,40 @@ public class App {
     //todo Task 2
     public void stairs(){
         // input your solution here
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("n: ");
+        int inputRows = scan.nextInt(); //Fragt Benutzer nach der gewünschten Zeilenanzahl.
+
+        if (inputRows <= 0) {
+            System.out.println("Invalid number!");
+            return;
+        }
+        int count = 0; // Muss 0 sein. Bei Startwert 1 würde man mit Wert "2" in der Pyramide starten.
+
+        for (int i = 1; i <= inputRows; i++) {
+            for (int row = 1; row <= i ; row++) { //Fixierung row = 1, damit sich Spalentenazahl laufend erhöht.
+                count++;
+                System.out.print(count + " ");
+            }
+            System.out.println(); //Zeilenumbruch.
+        }
     }
 
     //todo Task 3
     public void printPyramid(){
         // input your solution here
+
+        int rows = 6; //Anzahl Reihen lt. Angabe.
+        //int count = 0;
+
+        for (int i = 0; i < rows; i++) { //Übernimmt Anzahl vorgegebener Reihen
+            for (int space = 4; space >= i; space--) //Verringert die Anzahl der Leerzeichen für Zentrierung.
+                System.out.print(" ");
+            for (int star = 0; star < i*2 +1 ; star++) //Erhöht Anzahl Sterne um i*2 +1 (da 1 Leerzeichen weniger)
+                System.out.print("*");
+            System.out.println(); //Zeilenumbruch
+        }
     }
 
     //todo Task 4
