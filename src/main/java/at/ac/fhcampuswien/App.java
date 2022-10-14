@@ -84,19 +84,117 @@ public class App {
     }
 
     //todo Task 4
-    public void printRhombus(){
+    public void printRhombus() {
         // input your solution here
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("h: ");
+        int h = scan.nextInt(); //Höhe (Anzahl Zeilen)
+        System.out.print("c: ");
+        char c = scan.next().charAt(0); //.charAt() erlaubt char über Scanner einzulesen
+
+        if (h % 2 != 0) {
+            System.out.println("Invalid number!");
+        }
+        //int spaces =0;
+        for (int length = 0; length <= (h / 2); length++) { //length = Anzahl Zeilen
+            for (int spaces = (h / 2) - 1; spaces > 0; spaces--) { //Space-Loop (Spaces -1, da an dieser Stelle char sein soll)
+                System.out.print(" ");
+            }
+            for (int outputChar = 0; outputChar <= length; outputChar++) {//Char-Loop
+                System.out.print(c);
+            }
+            System.out.println();
+        }
+        for (double length = h; length > (h/2); length--) {
+            for (int spaces = 0; spaces > 0; spaces++) {
+                System.out.print(" ");
+            }
+            for (int outputChar = h; outputChar > length; outputChar--) {
+                System.out.println(c);
+            }
+            System.out.println();
+        }
     }
 
     //todo Task 5
-    public void marks(){
+    public void marks() {
         // input your solution here
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Mark 1: ");
+        int mark = scan.nextInt();
+        int count = 1;
+        double sum = 0;
+        int fives = 0;
+
+        while (true) {
+            if (mark > 5) {
+                System.out.println("Invalid mark!");
+                System.out.print("Mark " + count + ": ");
+                mark = scan.nextInt();
+            } else if (mark > 0 && mark < 5) {
+                count++;
+                System.out.print("Mark " + count + ": ");
+                sum = sum + mark;
+                mark = scan.nextInt();
+            } else if (mark == 5) {
+                count++;
+                System.out.print("Mark " + count + ": ");
+                sum = sum + mark;
+                fives++;
+                mark = scan.nextInt();
+            } else {
+                if (sum == 0) {
+                    System.out.println("Average: " + String.format(Locale.US, "%.2f", sum));
+                    System.out.println("Negative marks: " + fives);
+                    return;
+                } else {
+                    System.out.println("Average: " + String.format(Locale.US, "%.2f", (sum / (count - 1))));
+                    // String.format --> Locale.US für Ausgabe mit "." statt ","
+                    // count-1, da die letzte Note (0) Durchschnitt verfälschen würde.
+                    System.out.println("Negative marks: " + fives);
+                    return;
+                }
+            }
+
+        }
     }
 
     //todo Task 6
-    public void happyNumbers(){
+    public void happyNumbers() {
         // input your solution here
-    }
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("n: ");
+        int number = scan.nextInt();
+
+        int sum = 0; //Speichert Zwischensumme
+        int x = 0; //Bedingung für Endlosschleife
+
+
+        while (x == 0) { //Endlosschleife
+            while (number != 0) {
+                int lastDigit = number % 10; //Speichert letzte Stelle
+                sum = (lastDigit * lastDigit) + sum; //Quadriert letzte Stelle + addiert zu Summe
+                number = number / 10; //--> Nächste Zahl von r.n.l. wird behandelt.
+            }
+
+            if (sum == 4) { //Bedingung für sad number.
+                System.out.println("Sad number!");
+                return;
+            }
+
+            if (sum == 1) { //Bedingung für happy number.
+                System.out.println("Happy number!");
+                return;
+            }
+            number = sum;
+            sum = sum - sum;
+        }
+
+        }
+
 
     public static void main(String[] args){
         App exercise2 = new App();
